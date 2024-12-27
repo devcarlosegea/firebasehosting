@@ -12,12 +12,11 @@ const firebaseConfig = {
 
 // Inicializar Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Buscar Vehículo
 function buscarVehiculo() {
   const matricula = document.getElementById("matriculaInput").value.trim();
   const resultados = document.getElementById("resultados");
@@ -36,7 +35,6 @@ function buscarVehiculo() {
         const data = snapshot.val();
         let encontrado = false;
 
-        // Buscar por matrícula
         for (const key in data) {
           const coche = data[key];
           if (coche.matricula === matricula) {
@@ -59,16 +57,15 @@ function buscarVehiculo() {
     });
 }
 
-// Mostrar Información del Vehículo
 function mostrarInformacionVehiculo(coche) {
   const resultados = document.getElementById("resultados");
   resultados.innerHTML = `
-    <div class="resultado-item">
+    <div>
       <h2>${coche.marca} ${coche.modelo} (${coche.año})</h2>
       <p><strong>Matrícula:</strong> ${coche.matricula}</p>
       <p><strong>Color:</strong> ${coche.color}</p>
-      <p><strong>Fecha de Registro:</strong> ${coche.fecha}</p>
-      <img src="${coche.uri}" alt="Imagen del vehículo">
+      <p><strong>Fecha:</strong> ${coche.fecha}</p>
+      <img src="${coche.uri}" alt="Imagen del vehículo" style="max-width:100%;height:auto;">
     </div>
   `;
 }
