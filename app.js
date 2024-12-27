@@ -4,13 +4,14 @@ import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.22.0
 import { getStorage, ref as storageRef, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
 
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_AUTH_DOMAIN",
-    databaseURL: "TU_DATABASE_URL",
-    projectId: "TU_PROJECT_ID",
-    storageBucket: "TU_STORAGE_BUCKET",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID",
-    appId: "TU_APP_ID"
+  apiKey: "AIzaSyA7MqdXVJrpQiud_oAZowCwIwjjdN4yCRU",
+  authDomain: "mantenimiento-de-vehicul-d415f.firebaseapp.com",
+  databaseURL: "https://mantenimiento-de-vehicul-d415f-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "mantenimiento-de-vehicul-d415f",
+  storageBucket: "mantenimiento-de-vehicul-d415f.appspot.com",
+  messagingSenderId: "589467218933",
+  appId: "1:589467218933:web:d10cca6e28342215e6e6bc",
+  measurementId: "G-8PCR7EQN9Q"
 };
 
 // Inicializar Firebase
