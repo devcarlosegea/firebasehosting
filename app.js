@@ -19,7 +19,6 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const storage = getStorage(app);
 
-// Función para buscar el vehículo
 function buscarVehiculo() {
     const matricula = document.getElementById("matriculaInput").value.trim();
     if (!matricula) {
@@ -30,25 +29,30 @@ function buscarVehiculo() {
     const vehiculoRef = ref(database, 'ListaDeCOCHES');
     get(vehiculoRef).then((snapshot) => {
         if (snapshot.exists()) {
-            console.log("Datos de ListaDeCOCHES:", snapshot.val()); // Depuración
+            console.log("Datos de ListaDeCOCHES:", snapshot.val()); // Verificar datos obtenidos
             let encontrado = false;
             snapshot.forEach(childSnapshot => {
                 const coche = childSnapshot.val();
-                console.log("Coche encontrado:", coche); // Depuración
+                console.log("Coche en revisión:", coche); // Verificar cada coche
                 if (coche.matricula === matricula) {
                     mostrarInformacionVehiculo(coche);
                     cargarImagenesChequeos(coche.key); // Usamos la key para cargar imágenes
                     encontrado = true;
                 }
             });
-            if (!encontrado) alert("Vehículo no encontrado");
+            if (!encontrado) {
+                console.log("Vehículo no encontrado con matrícula:", matricula); // Depuración
+                alert("Vehículo no encontrado");
+            }
         } else {
+            console.log("No hay datos en ListaDeCOCHES");
             alert("No hay vehículos registrados en ListaDeCOCHES");
         }
     }).catch((error) => {
         console.error("Error al buscar el vehículo:", error);
     });
 }
+
 
 // Función para mostrar la información del vehículo
 function mostrarInformacionVehiculo(coche) {
